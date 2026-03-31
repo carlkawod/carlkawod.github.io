@@ -4,675 +4,129 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Carl Kawodza — Software Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #080808;
-    --surface: #111111;
-    --border: #222222;
-    --accent: #E8A000;
-    --accent-dim: #9A6A00;
-    --text: #F0EDE6;
-    --muted: #6B6860;
-    --subtle: #2A2A28;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Manrope', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 4rem;
-    background: rgba(8,8,8,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  .nav-cta {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--bg);
-    background: var(--accent);
-    padding: 0.5rem 1.25rem;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-
-  .hero-grid-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 70% at 10% 50%, rgba(232,160,0,0.07) 0%, transparent 70%);
-  }
-
-  .hero-left {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 10vw, 9rem);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  .hero-name span {
-    color: var(--accent);
-    display: block;
-  }
-
-  .hero-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 1.5rem 0 2.5rem;
-  }
-
-  .hero-desc {
-    font-size: 1rem;
-    color: #8A8880;
-    max-width: 440px;
-    line-height: 1.8;
-    margin-bottom: 3rem;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--bg);
-    background: var(--accent);
-    padding: 0.9rem 2rem;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    display: inline-block;
-  }
-
-  .btn-primary:hover { opacity: 0.85; }
-
-  .btn-outline {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 0.9rem 2rem;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
-  }
-
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-right {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .hero-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    width: 280px;
-  }
-
-  .hero-card-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-stat {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hero-stat:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-
-  .hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8rem;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .hero-stat-label {
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  /* ── SECTION BASE ── */
-  section {
-    padding: 6rem 4rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    letter-spacing: 0.04em;
-    line-height: 1;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    margin-left: 1rem;
-  }
-
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-  }
-
-  .project-card {
-    background: var(--bg);
-    padding: 2.5rem;
-    transition: background 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 0;
-    background: var(--accent);
-    transition: height 0.3s;
-  }
-
-  .project-card:hover::before { height: 100%; }
-  .project-card:hover { background: var(--surface); }
-
-  .project-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent-dim);
-    letter-spacing: 0.2em;
-    margin-bottom: 1.25rem;
-  }
-
-  .project-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: var(--text);
-  }
-
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent-dim);
-    padding: 0.2rem 0.6rem;
-  }
-
-  .project-link {
-    display: inline-block;
-    margin-top: 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .project-link:hover { color: var(--accent); }
-
-  /* ── SKILLS ── */
-  .skills-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-
-  .skills-group-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2rem;
-  }
-
-  .skill-item {
-    margin-bottom: 1.5rem;
-  }
-
-  .skill-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
-
-  .skill-name {
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
-
-  .skill-level {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-
-  .skill-bar {
-    height: 2px;
-    background: var(--subtle);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .skill-fill {
-    position: absolute;
-    top: 0; left: 0; height: 100%;
-    background: var(--accent);
-    transform-origin: left;
-    animation: fillBar 1s ease forwards;
-    transform: scaleX(0);
-  }
-
-  @keyframes fillBar {
-    to { transform: scaleX(1); }
-  }
-
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .tool-pill {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
-    background: var(--subtle);
-    padding: 0.45rem 1rem;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .tool-pill:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── RESUME ── */
-  .resume-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-
-  .resume-col-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .resume-item {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    padding-left: 1.25rem;
-  }
-
-  .resume-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 1.75rem;
-    width: 4px; height: 4px;
-    background: var(--accent);
-  }
-
-  .resume-item-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.35rem;
-  }
-
-  .resume-item-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-  }
-
-  .resume-item-sub {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-
-  .resume-item-desc {
-    font-size: 0.82rem;
-    color: #5A5850;
-    line-height: 1.7;
-  }
-
-  .resume-cta {
-    margin-top: 3rem;
-    text-align: center;
-  }
-
-  /* ── CONTACT ── */
-  #contact {
-    background: var(--surface);
-  }
-
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-  }
-
-  .contact-blurb {
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.9;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-big {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--text);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.88rem;
-    transition: color 0.2s;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-
-  .contact-link-icon {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    min-width: 80px;
-  }
-
-  /* form */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-group label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .form-group input,
-  .form-group textarea {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.88rem;
-    padding: 0.8rem 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-    width: 100%;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--accent); }
-
-  .form-group textarea { min-height: 120px; }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-copy {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .footer-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--accent); }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1.25rem 1.5rem; }
-    nav .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
-    .hero-right { justify-content: flex-start; }
-    section { padding: 4rem 1.5rem; }
-    .skills-layout, .resume-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#080808;color:#F0EDE6;font-family:'Manrope',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(8,8,8,0.9);border-bottom:1px solid #222}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.08em;color:#E8A000;text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#6B6860;text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:#F0EDE6}
+.nav-cta{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#080808;background:#E8A000;padding:0.5rem 1.25rem;text-decoration:none;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;gap:4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(#1a1a1a 1px,transparent 1px),linear-gradient(90deg,#1a1a1a 1px,transparent 1px);background-size:60px 60px;opacity:0.4;pointer-events:none}
+.hero-tag{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#E8A000;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.hero-tag::before{content:'';display:block;width:32px;height:1px;background:#E8A000}
+h1.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,8rem);line-height:0.92;letter-spacing:0.02em;color:#F0EDE6;margin-bottom:0.25rem}
+h1.hero-name span{color:#E8A000;display:block}
+.hero-title{font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.15em;text-transform:uppercase;color:#6B6860;margin:1.5rem 0 2.5rem}
+.hero-desc{font-size:0.95rem;color:#6B6860;max-width:440px;line-height:1.9;margin-bottom:3rem}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#080808;background:#E8A000;padding:0.9rem 2rem;text-decoration:none;display:inline-block;transition:opacity 0.2s;border:none;cursor:pointer}
+.btn-primary:hover{opacity:0.85}
+.btn-outline{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#F0EDE6;border:1px solid #333;padding:0.9rem 2rem;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s}
+.btn-outline:hover{border-color:#E8A000;color:#E8A000}
+.hero-card{background:#111;border:1px solid #222;padding:2rem;width:260px;position:relative;z-index:1}
+.hero-card-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#6B6860;margin-bottom:1.5rem}
+.hero-stat{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #222}
+.hero-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.hero-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#E8A000;line-height:1;margin-bottom:0.25rem}
+.hero-stat-label{font-size:0.75rem;color:#6B6860}
+.hero-right{display:flex;justify-content:flex-end;align-items:center;position:relative;z-index:1}
+
+/* SECTIONS */
+section{padding:6rem 4rem;border-top:1px solid #222}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:4rem}
+.section-num{font-family:'DM Mono',monospace;font-size:0.7rem;color:#E8A000;letter-spacing:0.15em}
+h2.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:0.04em;line-height:1;color:#F0EDE6}
+.section-line{flex:1;height:1px;background:#222;margin-left:1rem}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#222}
+.project-card{background:#080808;padding:2.5rem;transition:background 0.2s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:#E8A000;transition:height 0.3s}
+.project-card:hover::before{height:100%}
+.project-card:hover{background:#111}
+.project-num{font-family:'DM Mono',monospace;font-size:0.62rem;color:#9A6A00;letter-spacing:0.2em;margin-bottom:1.25rem}
+.project-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;color:#F0EDE6}
+.project-card p{font-size:0.85rem;color:#6B6860;line-height:1.8;margin-bottom:1.5rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:#E8A000;border:1px solid #9A6A00;padding:0.2rem 0.6rem}
+.project-link{display:inline-block;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#6B6860;text-decoration:none;transition:color 0.2s}
+.project-link:hover{color:#E8A000}
+
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.skills-group-title{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:#E8A000;margin-bottom:2rem}
+.skill-item{margin-bottom:1.5rem}
+.skill-meta{display:flex;justify-content:space-between;margin-bottom:0.5rem}
+.skill-name{font-size:0.88rem;font-weight:600;color:#F0EDE6}
+.skill-level{font-family:'DM Mono',monospace;font-size:0.68rem;color:#6B6860}
+.skill-bar{height:2px;background:#222;position:relative}
+.skill-fill{position:absolute;top:0;left:0;height:100%;background:#E8A000}
+.tools-list{display:flex;flex-wrap:wrap;gap:0.65rem}
+.tool-pill{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;color:#F0EDE6;background:#111;padding:0.4rem 0.9rem;border:1px solid #222;transition:border-color 0.2s,color 0.2s;cursor:default}
+.tool-pill:hover{border-color:#E8A000;color:#E8A000}
+
+/* RESUME */
+.resume-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.resume-col-title{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:#E8A000;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid #222}
+.resume-item{padding:1.5rem 0 1.5rem 1.25rem;border-bottom:1px solid #222;position:relative}
+.resume-item::before{content:'';position:absolute;left:0;top:1.85rem;width:4px;height:4px;background:#E8A000}
+.resume-item-date{font-family:'DM Mono',monospace;font-size:0.65rem;color:#6B6860;letter-spacing:0.1em;margin-bottom:0.35rem}
+.resume-item-title{font-size:0.95rem;font-weight:700;margin-bottom:0.2rem;color:#F0EDE6}
+.resume-item-sub{font-size:0.8rem;color:#6B6860;margin-bottom:0.5rem}
+.resume-item-desc{font-size:0.8rem;color:#444;line-height:1.75}
+.resume-cta{margin-top:3rem;text-align:center}
+
+/* CONTACT */
+#contact{background:#111}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.contact-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);color:#F0EDE6;line-height:1.1;margin-bottom:1.5rem}
+.contact-blurb{font-size:0.92rem;color:#6B6860;line-height:1.9;margin-bottom:2.5rem}
+.contact-links{display:flex;flex-direction:column;gap:0.85rem}
+.contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:#6B6860;font-size:0.85rem;padding:1rem;border:1px solid #222;background:#080808;transition:border-color 0.2s,color 0.2s}
+.contact-link:hover{border-color:#E8A000;color:#E8A000}
+.contact-link-icon{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:#E8A000;min-width:75px}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:#6B6860}
+.form-group input,.form-group textarea{background:#080808;border:1px solid #222;color:#F0EDE6;font-family:'Manrope',sans-serif;font-size:0.88rem;padding:0.8rem 1rem;outline:none;transition:border-color 0.2s;resize:none;width:100%}
+.form-group input:focus,.form-group textarea:focus{border-color:#E8A000}
+.form-group textarea{min-height:120px}
+#form-success{display:none;font-family:'DM Mono',monospace;font-size:0.72rem;color:#E8A000;margin-top:0.5rem;letter-spacing:0.1em}
+
+/* FOOTER */
+footer{padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #222}
+.footer-copy{font-family:'DM Mono',monospace;font-size:0.65rem;color:#6B6860;letter-spacing:0.1em}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{font-family:'DM Mono',monospace;font-size:0.65rem;color:#6B6860;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:#E8A000}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:2.5rem}
+  .hero-right{justify-content:flex-start}
+  section{padding:4rem 1.5rem}
+  .projects-grid{grid-template-columns:1fr}
+  .skills-layout,.resume-layout,.contact-layout{grid-template-columns:1fr;gap:2.5rem}
+  .form-row{grid-template-columns:1fr}
+  footer{padding:1.5rem;flex-direction:column;gap:1rem;text-align:center}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">CARL KAWODZA</a>
   <ul class="nav-links">
@@ -681,14 +135,13 @@
     <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="/cdn-cgi/l/email-protection#630008515551230f0a0d07060d140c0c074d060716" class="nav-cta">Hire Me</a>
+  <a href="mailto:ck262@lindenwood.edu" class="nav-cta">Hire Me</a>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-grid-bg"></div>
+  <div class="hero-bg"></div>
 
-  <div class="hero-left reveal">
+  <div style="position:relative;z-index:1;">
     <div class="hero-tag">Available for Work · OPT Authorized</div>
     <h1 class="hero-name">
       CARL KAWODZA
@@ -696,8 +149,8 @@
     </h1>
     <p class="hero-title">Software Developer · Backend · Full-Stack</p>
     <p class="hero-desc">
-      Computer Science senior at Lindenwood University. I build reliable backend systems
-      and full-stack applications — from ASP.NET Core APIs to end-to-end data pipelines.
+      Computer Science senior at Lindenwood University with hands-on experience
+      building full-stack applications, multithreaded systems, and data-driven tools.
       Scrum Lead by practice, engineer by passion.
     </p>
     <div class="hero-buttons">
@@ -706,7 +159,7 @@
     </div>
   </div>
 
-  <div class="hero-right reveal" style="transition-delay: 0.15s;">
+  <div class="hero-right">
     <div class="hero-card">
       <div class="hero-card-label">At a Glance</div>
       <div class="hero-stat">
@@ -725,7 +178,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header">
     <span class="section-num">01</span>
@@ -734,15 +186,10 @@
   </div>
 
   <div class="projects-grid">
-    <div class="project-card reveal">
+    <div class="project-card">
       <div class="project-num">001</div>
-      <h3 class="project-title">Assessment Report Generator</h3>
-      <p class="project-desc">
-        Full-stack web app automating academic assessment reporting, replacing manual
-        spreadsheet workflows. Built a Node.js backend with RESTful endpoints,
-        a normalized relational database (10+ tables, 3NF), and data processing
-        logic to analyze student performance.
-      </p>
+      <h3>Assessment Report Generator</h3>
+      <p>Full-stack web app automating academic assessment reporting, replacing manual spreadsheet workflows. Built a Node.js backend with RESTful endpoints and a normalized relational database (10+ tables, 3NF) to manage students, courses, and learning outcomes.</p>
       <div class="project-tags">
         <span class="tag">Node.js</span>
         <span class="tag">JavaScript</span>
@@ -753,14 +200,10 @@
       <a href="https://github.com/carlkawod/Projects.git" class="project-link" target="_blank">View on GitHub →</a>
     </div>
 
-    <div class="project-card reveal" style="transition-delay: 0.1s;">
+    <div class="project-card">
       <div class="project-num">002</div>
-      <h3 class="project-title">Concurrent Airport Simulation</h3>
-      <p class="project-desc">
-        Multithreaded C++ simulation of airport operations using pthreads.
-        Managed shared runway resources with synchronization primitives to
-        prevent race conditions and modeled real-world scheduling constraints.
-      </p>
+      <h3>Concurrent Airport Simulation</h3>
+      <p>Multithreaded C++ simulation of airport operations using pthreads. Managed shared runway resources with synchronization primitives to prevent race conditions and modeled real-world scheduling constraints under concurrent load.</p>
       <div class="project-tags">
         <span class="tag">C++</span>
         <span class="tag">Multithreading</span>
@@ -770,14 +213,10 @@
       <a href="https://github.com/carlkawod/Projects.git" class="project-link" target="_blank">View on GitHub →</a>
     </div>
 
-    <div class="project-card reveal" style="transition-delay: 0.2s;">
+    <div class="project-card">
       <div class="project-num">003</div>
-      <h3 class="project-title">Data Analysis with R</h3>
-      <p class="project-desc">
-        Processed and analyzed large datasets in R to identify trends and performance
-        patterns. Built regression models to predict flight delays and created
-        visualizations to communicate insights effectively.
-      </p>
+      <h3>Data Analysis with R</h3>
+      <p>Processed and analyzed large datasets in R to identify trends and performance patterns. Built regression models to predict flight delays and created visualizations to communicate key findings clearly.</p>
       <div class="project-tags">
         <span class="tag">R</span>
         <span class="tag">SQL</span>
@@ -787,14 +226,10 @@
       <a href="https://github.com/carlkawod/Projects.git" class="project-link" target="_blank">View on GitHub →</a>
     </div>
 
-    <div class="project-card reveal" style="transition-delay: 0.3s;">
+    <div class="project-card">
       <div class="project-num">004</div>
-      <h3 class="project-title">Responsive Web Application</h3>
-      <p class="project-desc">
-        Developed a responsive web app with dynamic UI components using HTML,
-        CSS Grid, and Bootstrap. Optimized for performance and SEO to improve
-        load times and search visibility.
-      </p>
+      <h3>Responsive Web Application</h3>
+      <p>Developed a responsive web app with dynamic UI components using HTML, CSS Grid, and Bootstrap. Optimized for performance and SEO to improve load times and search visibility across devices.</p>
       <div class="project-tags">
         <span class="tag">HTML</span>
         <span class="tag">CSS</span>
@@ -806,7 +241,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -815,52 +249,37 @@
   </div>
 
   <div class="skills-layout">
-    <div class="reveal">
-      <div class="skills-group-title">Core Languages &amp; Frameworks</div>
+    <div>
+      <div class="skills-group-title">Core Languages</div>
 
       <div class="skill-item">
-        <div class="skill-meta">
-          <span class="skill-name">Java</span>
-          <span class="skill-level">Advanced</span>
-        </div>
+        <div class="skill-meta"><span class="skill-name">Java</span><span class="skill-level">Advanced</span></div>
         <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
       </div>
 
       <div class="skill-item">
-        <div class="skill-meta">
-          <span class="skill-name">C++</span>
-          <span class="skill-level">Advanced</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" style="width:85%; animation-delay:0.05s"></div></div>
+        <div class="skill-meta"><span class="skill-name">C++</span><span class="skill-level">Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
       </div>
 
       <div class="skill-item">
-        <div class="skill-meta">
-          <span class="skill-name">Python / R</span>
-          <span class="skill-level">Proficient</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" style="width:78%; animation-delay:0.1s"></div></div>
+        <div class="skill-meta"><span class="skill-name">Python / R</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
       </div>
 
       <div class="skill-item">
-        <div class="skill-meta">
-          <span class="skill-name">SQL / MySQL</span>
-          <span class="skill-level">Proficient</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" style="width:75%; animation-delay:0.2s"></div></div>
+        <div class="skill-meta"><span class="skill-name">SQL / MySQL</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
       </div>
 
       <div class="skill-item">
-        <div class="skill-meta">
-          <span class="skill-name">JavaScript / HTML / CSS</span>
-          <span class="skill-level">Proficient</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" style="width:70%; animation-delay:0.3s"></div></div>
+        <div class="skill-meta"><span class="skill-name">JavaScript / HTML / CSS</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
       </div>
     </div>
 
-    <div class="reveal" style="transition-delay: 0.15s;">
-      <div class="skills-group-title" style="margin-bottom:1.5rem;">Tools &amp; Technologies</div>
+    <div>
+      <div class="skills-group-title">Tools &amp; Technologies</div>
       <div class="tools-list">
         <span class="tool-pill">Git / GitHub</span>
         <span class="tool-pill">Node.js</span>
@@ -876,21 +295,21 @@
         <span class="tool-pill">Debugging</span>
       </div>
 
-      <div class="skills-group-title" style="margin-top: 3rem; margin-bottom:1.5rem;">CS Foundations</div>
+      <div class="skills-group-title" style="margin-top:2.5rem">CS Foundations</div>
       <div class="tools-list">
         <span class="tool-pill">Data Structures</span>
         <span class="tool-pill">Algorithms</span>
+        <span class="tool-pill">Concurrency</span>
         <span class="tool-pill">OS Concepts</span>
-        <span class="tool-pill">Networking</span>
         <span class="tool-pill">OOP</span>
         <span class="tool-pill">Big-O Analysis</span>
-        <span class="tool-pill">Computer Architecture</span>
+        <span class="tool-pill">Networking</span>
+        <span class="tool-pill">Cybersecurity</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESUME -->
 <section id="resume">
   <div class="section-header">
     <span class="section-num">03</span>
@@ -899,65 +318,48 @@
   </div>
 
   <div class="resume-layout">
-    <div class="reveal">
+    <div>
       <div class="resume-col-title">Experience</div>
 
       <div class="resume-item">
         <div class="resume-item-date">2025 — Present</div>
         <div class="resume-item-title">Scrum Lead &amp; Backend Developer</div>
         <div class="resume-item-sub">Data Assessment Technologies · Capstone Team</div>
-        <div class="resume-item-desc">
-          Led sprint planning and backlog management for a 5-person Agile team.
-          Built RESTful API with Node.js and MySQL, designed normalized database
-          schema (10+ tables, 3NF), and delivered iterative releases for client Dr. Blythe.
-        </div>
+        <div class="resume-item-desc">Led sprint planning and backlog management for a 5-person Agile team. Built RESTful API with Node.js and MySQL, designed normalized database schema (10+ tables, 3NF), and delivered iterative releases for client Dr. Blythe.</div>
       </div>
 
       <div class="resume-item">
         <div class="resume-item-date">05/2021 — 08/2023</div>
         <div class="resume-item-title">IT Help Desk Technician</div>
         <div class="resume-item-sub">Lindenwood University · Saint Charles, MO</div>
-        <div class="resume-item-desc">
-          Diagnosed and resolved software, network, and security issues across campus systems.
-          Responded to suspicious account activity, configured user environments, and used
-          Meraki and remote management tools for troubleshooting. Recognized for outstanding
-          customer service and reliability.
-        </div>
+        <div class="resume-item-desc">Diagnosed and resolved software, network, and security issues across campus. Responded to suspicious account activity, configured user environments, and used Meraki and remote management tools for troubleshooting. Recognized for outstanding service and reliability.</div>
       </div>
     </div>
 
-    <div class="reveal" style="transition-delay: 0.15s;">
+    <div>
       <div class="resume-col-title">Education</div>
 
       <div class="resume-item">
         <div class="resume-item-date">08/2022 — 05/2026</div>
         <div class="resume-item-title">B.S. Computer Science</div>
         <div class="resume-item-sub">Lindenwood University · Saint Charles, MO · GPA: 3.3 / 4.0</div>
-        <div class="resume-item-desc">
-          Dean's List. Sibley Scholarship recipient — Lindenwood's premier undergraduate
-          scholarship recognizing high academic achievement, community service, and leadership.
-          Capstone: Assessment Report Generator.
-        </div>
+        <div class="resume-item-desc">Dean's List. Sibley Scholarship recipient — Lindenwood's premier undergraduate scholarship recognizing high academic achievement, community service, and leadership excellence.</div>
       </div>
 
       <div class="resume-item">
-        <div class="resume-item-date">Concepts</div>
-        <div class="resume-item-title">Data Structures · Multithreading · APIs</div>
-        <div class="resume-item-sub">Debugging · Databases · Concurrency</div>
-        <div class="resume-item-desc">
-          Strong foundation in systems-level programming, algorithm design, and
-          building data-driven applications in collaborative agile environments.
-        </div>
+        <div class="resume-item-date">Key Coursework</div>
+        <div class="resume-item-title">Data Structures · Algorithms · OS</div>
+        <div class="resume-item-sub">Multithreading · Databases · Networking · Discrete Structures · Computer Systems · Calculus II · GUI Design with C#</div>
+        <div class="resume-item-desc">Strong foundation in systems-level programming, algorithm design, and building data-driven applications in collaborative agile environments.</div>
       </div>
     </div>
   </div>
 
-  <div class="resume-cta reveal">
+  <div class="resume-cta">
     <a href="Carl_Kawodza_RESUME.pdf" class="btn-primary" download>Download Full Resume (PDF)</a>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
     <span class="section-num">04</span>
@@ -966,18 +368,13 @@
   </div>
 
   <div class="contact-layout">
-    <div class="reveal">
+    <div>
       <p class="contact-big">Let's build something great together.</p>
-      <p class="contact-blurb">
-        I'm actively looking for software engineering roles — SDE, backend, or full-stack.
-        Open to full-time positions with OPT work authorization. Feel free to reach out
-        via email or connect on LinkedIn.
-      </p>
-
+      <p class="contact-blurb">I'm actively looking for software engineering roles — SDE, backend, or full-stack. Open to full-time positions with OPT work authorization. Feel free to reach out via email or connect on LinkedIn.</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#81e2eab3b7b3c1ede8efe5e4eff6eeeee5afe4e5f4" class="contact-link">
+        <a href="mailto:ck262@lindenwood.edu" class="contact-link">
           <span class="contact-link-icon">Email</span>
-          <span class="__cf_email__" data-cfemail="76151d444044361a1f181213180119191258131203">[email&#160;protected]</span>
+          ck262@lindenwood.edu
         </a>
         <a href="https://www.linkedin.com/in/carl-kawodza-8a493b227/" class="contact-link" target="_blank">
           <span class="contact-link-icon">LinkedIn</span>
@@ -990,7 +387,7 @@
       </div>
     </div>
 
-    <div class="reveal" style="transition-delay: 0.15s;">
+    <div>
       <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-group">
@@ -998,30 +395,25 @@
             <input type="text" id="fname" placeholder="Your Name" required />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@company.com" required />
+            <label for="femail">Email</label>
+            <input type="email" id="femail" placeholder="you@company.com" required />
           </div>
         </div>
         <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" placeholder="Job opportunity, collaboration..." />
+          <label for="fsubject">Subject</label>
+          <input type="text" id="fsubject" placeholder="Job opportunity, collaboration..." />
         </div>
         <div class="form-group">
-          <label for="msg">Message</label>
-          <textarea id="msg" placeholder="Tell me about the role or project..." required></textarea>
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" placeholder="Tell me about the role or project..." required></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="border: none; cursor: pointer; width: fit-content;">
-          Send Message
-        </button>
-        <p id="form-success" style="display:none; font-family:'DM Mono',monospace; font-size:0.75rem; color: var(--accent); margin-top: 0.5rem; letter-spacing:0.1em;">
-          Message sent! I'll get back to you soon.
-        </p>
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p id="form-success">Message sent! I'll get back to you soon.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-copy">© 2026 Carl Kawodza. Built with intention.</span>
   <div class="footer-links">
@@ -1032,9 +424,12 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.cl
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('form-success').style.display = 'block';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
